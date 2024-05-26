@@ -1,5 +1,8 @@
-package sg.irtest.neoapi;
+package sg.irtest.neoapi.controller;
 
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class NeoapiController {
-
+    
 }
