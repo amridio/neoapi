@@ -1,19 +1,24 @@
 package sg.irtest.neoapi.model;
 
+import java.math.BigDecimal;
+
 public class Neo {
     
     String id;
+    String name;
+    
+
     float magnitude;
     NeoDiameter neoDiameter;
     boolean isPha;
     String closeApproachDate;
-    float relativeVelocity;
-    float missDistance;
+    double relativeVelocity;
+    BigDecimal missDistance;
     String orbitingBody;
     boolean isSentryObject;
 
     public Neo(String id, float magnitude, NeoDiameter neoDiameter, boolean isPha, String closeApproachDate,
-            float relativeVelocity, float missDistance, String orbitingBody, boolean isSentryObject) {
+            double relativeVelocity, BigDecimal missDistance, String orbitingBody, boolean isSentryObject) {
         this.id = id;
         this.magnitude = magnitude;
         this.neoDiameter = neoDiameter;
@@ -25,11 +30,21 @@ public class Neo {
         this.isSentryObject = isSentryObject;
     }
 
+    public Neo(){
+
+    }
+
     public String getId() {
         return id;
     }
     public void setId(String id) {
         this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public float getMagnitude() {
         return magnitude;
@@ -55,16 +70,16 @@ public class Neo {
     public void setCloseApproachDate(String closeApproachDate) {
         this.closeApproachDate = closeApproachDate;
     }
-    public float getRelativeVelocity() {
+    public double getRelativeVelocity() {
         return relativeVelocity;
     }
-    public void setRelativeVelocity(float relativeVelocity) {
+    public void setRelativeVelocity(double relativeVelocity) {
         this.relativeVelocity = relativeVelocity;
     }
-    public float getMissDistance() {
+    public BigDecimal getMissDistance() {
         return missDistance;
     }
-    public void setMissDistance(float missDistance) {
+    public void setMissDistance(BigDecimal missDistance) {
         this.missDistance = missDistance;
     }
     public String getOrbitingBody() {
