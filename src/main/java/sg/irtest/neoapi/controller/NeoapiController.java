@@ -129,7 +129,9 @@ public class NeoapiController {
             if (dateDiff > 7){
                 throw new BadRequestException("Invalid Parameter, date range can't more than 7 days");
             }
-            
+            if (radius < 0){
+                throw new BadRequestException("Invalid Parameter, radius can't be negative int");
+            }
         }
         catch (DateTimeParseException dtpe){
             System.out.println("Masuk catch DTPE");
@@ -174,22 +176,25 @@ public class NeoapiController {
                 }
                 neo.setSentryObject(jsNeo.get("is_sentry_object").getAsBoolean());
                 listNeo.add(neo);
-                System.out.println(neo.toString());
+                //System.out.println(neo.toString());
             }
         } 
-        System.out.println("Jumlah Neo dalam list:"+listNeo.size());
+        System.out.println("Jumlah Neo dalam:"+listNeo.size());
         listNeo.sort((o1,o2) -> o1.getMissDistance().compareTo(o2.getMissDistance()));
-        List<Neo> top10neol = new ArrayList<Neo>();
+        List<Neo> inRadiusNeo = new ArrayList<Neo>();
         int count = 0;
         for (Neo neo : listNeo) {
-            top10neol.add(neo);
-            count++;
-            System.out.println(neo.toString());
-            if (count >= 10){
-                break;
+            if (radius >= neo.getMissDistance().intValue()){
+                inRadiusNeo.add(neo);
+                count++;
             }
+            else{
+                break;
+            }           
+            //System.out.println(neo.toString());
         }
-        return top10neol;
+        System.out.println("Jumlah Neo dalam radius:"+inRadiusNeo.size());
+        return inRadiusNeo;
     }
     
 }
